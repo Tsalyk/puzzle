@@ -5,7 +5,7 @@ board = [
  "* 4 1****",
  "     9 5 ",
  " 6  83  *",
- "3      **",
+ "3   1  **",
  "  8  2***",
  "  2  ****"
  ]
@@ -40,7 +40,7 @@ def check_columns(board: list) -> bool:
     Return True if all numbers in columns are unique.
 
     >>> check_columns(board)
-    True
+    False
     """
     column_lst = [[] for i in range(len(board))]
 
@@ -62,7 +62,30 @@ def check_bloc(board: list) -> bool:
     >>> check_bloc(board)
     True
     """
-    pass
+    colours_lst = [[] for i in range(5)]
+
+    for ind, element in enumerate(board):
+        for subind, subel in enumerate(element):
+            if subel != "*":
+                if subind >= 4 and ind <= 4:
+                    colours_lst[0].append(subel)
+                elif subind >= 3 and ind <= 5:
+                    colours_lst[1].append(subel)
+                elif subind >= 2 and ind <= 6:
+                    colours_lst[2].append(subel)
+                elif subind >= 1 and ind <= 7:
+                    colours_lst[3].append(subel)
+                elif subind >= 0 and ind <= 8:
+                    colours_lst[4].append(subel)
+
+    colours_lst = [list(filter(lambda el: el != " ", lst))
+                   for lst in colours_lst]
+
+    for element in colours_lst:
+        if len(set(element)) != len(element):
+            return False
+
+    return True
 
 
 def validate_board(board: list) -> bool:
@@ -72,4 +95,4 @@ def validate_board(board: list) -> bool:
     >>> validate_board(board)
     False
     """
-    return check_rows and check_columns and check_bloc
+    return check_rows(board) and check_columns(board) and check_bloc(board)
