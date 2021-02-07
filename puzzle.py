@@ -3,7 +3,7 @@ Git link: https://github.com/Tsalyk/puzzle
 """
 
 
-board = [
+board_example = [
  "**** ****",
  "***1 ****",
  "**  3****",
@@ -20,7 +20,7 @@ def check_rows(board: list) -> bool:
     """
     Return True if all numbers in lines are unique.
 
-    >>> check_rows(board)
+    >>> check_rows(board_example)
     True
     """
     digit_dict = {}
@@ -44,7 +44,7 @@ def check_columns(board: list) -> bool:
     """
     Return True if all numbers in columns are unique.
 
-    >>> check_columns(board)
+    >>> check_columns(board_example)
     False
     """
     column_lst = [[] for i in range(len(board))]
@@ -64,7 +64,7 @@ def check_bloc(board: list) -> bool:
     """
     Return True if all numbers in certain bloc of colours are unique.
 
-    >>> check_bloc(board)
+    >>> check_bloc(board_example)
     True
     """
     colours_lst = [[] for i in range(5)]
@@ -97,7 +97,7 @@ def validate_board(board: list) -> bool:
     """
     Return True if board is ready for the game.
 
-    >>> validate_board(board)
+    >>> validate_board(board_example)
     False
     """
     return check_rows(board) and check_columns(board) and check_bloc(board)
