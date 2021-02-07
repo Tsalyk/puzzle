@@ -1,3 +1,8 @@
+"""
+Git link: https://github.com/Tsalyk/puzzle
+"""
+
+
 board = [
  "**** ****",
  "***1 ****",
